@@ -1,0 +1,25 @@
+services:
+  app:
+    image: glyphr-studio:v2.5.2
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: glyphr-studio-container
+    #ports:
+    #  - "3000:3000"  #"3000"
+    environment:
+      - PORT=3000
+      - TZ=Asia/Ho_Chi_Minh
+    restart: unless-stopped # always, on-failure, unless-stopped
+
+  nginx:
+    image: nginx:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx-glyphr-studio-container
+    ports:
+      - "80:80"  # Expose port 80
+    restart: unless-stopped # always, on-failure, unless-stopped
+    depends_on:
+      - app

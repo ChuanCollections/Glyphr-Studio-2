@@ -10,5 +10,8 @@ export default defineConfig({
 		rollupOptions: {
 			treeshake: 'recommended',
 		},
+	},
+	server: {
+		port: Number(process.env.PORT) || 3000,
 	}
 });
