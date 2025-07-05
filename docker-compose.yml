@@ -1,0 +1,12 @@
+services:
+  app:
+    image: glyphr-studio:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: glyphr-studio-container
+    ports:
+     - 3000:80
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    restart: unless-stopped # always, on-failure, unless-stopped
